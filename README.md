@@ -6,7 +6,7 @@ Rails app created with `rails new facebook --database=postgresql --css bootstrap
 
 ## Requirements
 
-- Users must be signed in to see anything (but sign-in page)
+- [x] Users must be signed in to see anything (but sign-in page)
 - Users can send Friend Requests to other Users
 - A User must accept the Friend Request to become friends
 - The Friend Request shows up in the notifications section of a User’s navbar
