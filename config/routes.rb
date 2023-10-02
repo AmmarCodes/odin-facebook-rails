@@ -6,4 +6,5 @@ Rails.application.routes.draw do
   root to: 'home#index'
 
   resources :users, only: [:show]
+  put '/users/:id/add_friend', to: 'users#send_friend_request', as: 'add_friend'
 end
