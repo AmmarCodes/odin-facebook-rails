@@ -8,7 +8,14 @@ class UsersController < ApplicationController
   end
 
   def send_friend_request
-    # @TODO process
+    if can_send_friend_request(@user)
+      current_user.friend_requests << @user
+      flash[:notice] = 'Friend request sent!'
+      # TODO: send notification to @user
+    else
+      flash[:alert] = 'You can not send a friend request to this user.'
+    end
+    redirect_back fallback_location: root_url
   end
 
   private
@@ -20,7 +27,9 @@ class UsersController < ApplicationController
   def can_send_friend_request(user)
     return false if current_user == user
 
-    # @TODO return false if current_user.friends.include(user)
+    return false if current_user.friend_requests.include?(user)
+
+    return false if current_user.friends.include?(user)
 
     true
   end

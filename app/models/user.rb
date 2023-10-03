@@ -5,4 +5,10 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   validates :name, presence: true
+
+  has_many :friendships
+  has_many :friends, -> { where(friendships: { confirmed: true }) }, through: :friendships
+  has_many :friend_requests, -> { where(friendships: { confirmed: false }) }, source: :friend, through: :friendships
+
+  default_scope { includes(:friends) }
 end
