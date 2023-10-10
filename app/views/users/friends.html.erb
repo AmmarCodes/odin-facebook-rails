@@ -1,0 +1,11 @@
+<h3>Friends</h3>
+
+<% unless @friends %>
+  <p>You don't have any friends yet.</p>
+<% else %>
+  <ul>
+    <% @friends.each do |friend| %>
+      <li><%= link_to friend.name, user_path(friend) %></li>
+    <% end %>
+  </ul>
+<% end %>

@@ -9,8 +9,8 @@ Rails app created with `rails new facebook --database=postgresql --css bootstrap
 - [x] Users must be signed in to see anything (but sign-in page)
 - [x] Users can send Friend Requests to other Users
     - Reference https://kaylee42.github.io/blog/2016/01/12/reflexive-self-joins-in-rails
-- [/] A User must accept the Friend Request to become friends
-- The Friend Request shows up in the notifications section of a User’s navbar
+- [x] A User must accept the Friend Request to become friends
+- [x] The Friend Request shows up in the notifications section of a User’s navbar
 - Users can create Posts
 - Users can Like Posts
 - Users can Comment on Posts

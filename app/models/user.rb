@@ -9,6 +9,5 @@ class User < ApplicationRecord
   has_many :friendships
   has_many :friends, -> { where(friendships: { confirmed: true }) }, through: :friendships
   has_many :friend_requests, -> { where(friendships: { confirmed: false }) }, source: :friend, through: :friendships
-
-  default_scope { includes(:friends) }
+  has_many :notifications, -> { where(notifications: { done: false }) }
 end
