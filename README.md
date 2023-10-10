@@ -11,7 +11,7 @@ Rails app created with `rails new facebook --database=postgresql --css bootstrap
     - Reference https://kaylee42.github.io/blog/2016/01/12/reflexive-self-joins-in-rails
 - [x] A User must accept the Friend Request to become friends
 - [x] The Friend Request shows up in the notifications section of a User’s navbar
-- Users can create Posts
+- [x] Users can create Posts
 - Users can Like Posts
 - Users can Comment on Posts
 - Posts should always display with the post content, author, comments and likes.
