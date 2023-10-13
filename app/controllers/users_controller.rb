@@ -44,7 +44,7 @@ class UsersController < ApplicationController
     # flash notice friend has been confirmed
     flash[:notice] = "You are now friend with #{@user.name}"
 
-    redirect_to notifications_path
+    redirect_back fallback_location: notifications_path
   end
 
   private
