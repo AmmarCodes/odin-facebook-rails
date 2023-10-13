@@ -12,7 +12,7 @@ Rails app created with `rails new facebook --database=postgresql --css bootstrap
 - [x] A User must accept the Friend Request to become friends
 - [x] The Friend Request shows up in the notifications section of a User’s navbar
 - [x] Users can create Posts
-- Users can Like Posts
+- [x] Users can Like Posts
 - Users can Comment on Posts
 - Posts should always display with the post content, author, comments and likes.
 - Treat the Posts Index page like the real Facebook’s “Timeline” feature – show all the recent posts from the current user and users she is friends with

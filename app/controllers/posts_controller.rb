@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_action :set_post, only: %i[show edit update destroy]
+  before_action :set_post, only: %i[show edit update destroy like dislike]
   before_action :set_post_author, only: %i[edit update destroy]
 
   # GET /posts
@@ -44,6 +44,16 @@ class PostsController < ApplicationController
     @post.destroy
 
     redirect_to posts_url, notice: 'Post was successfully destroyed.'
+  end
+
+  def like
+    @post.likers << current_user
+    redirect_back fallback_location: @post
+  end
+
+  def dislike
+    @post.likers.delete(current_user)
+    redirect_back fallback_location: @post
   end
 
   private

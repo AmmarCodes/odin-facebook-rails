@@ -11,4 +11,6 @@ class User < ApplicationRecord
   has_many :friend_requests, -> { where(friendships: { confirmed: false }) }, source: :friend, through: :friendships
   has_many :notifications, -> { where(notifications: { done: false }) }
   has_many :posts
+  has_many :likes
+  has_many :liked_posts, through: :likes, source: :post
 end
