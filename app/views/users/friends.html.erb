@@ -1,11 +1,13 @@
 <h3>Friends</h3>
 
-<% unless @friends %>
-  <p>You don't have any friends yet.</p>
+<% if @friends %>
+  <p class="p-5 mb-4 bg-body-tertiary rounded-3">
+  You don't have any friends yet, head over to the <%= link_to "users", users_url %> page and add some!
+  </p>
 <% else %>
-  <ul>
+  <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-3">
     <% @friends.each do |friend| %>
-      <li><%= link_to friend.name, user_path(friend) %></li>
+      <%= render partial: 'users/user_card', locals: { user: friend } %>
     <% end %>
-  </ul>
+  </div>
 <% end %>

@@ -3,8 +3,8 @@
 class UsersController < ApplicationController
   before_action :set_user_param, only: %I[show send_friend_request approve_friend_request confirm_friend_request]
 
-  def show
-    @can_send_friend_request = can_send_friend_request(@user)
+  def index
+    @users = User.all
   end
 
   def show; end

@@ -1,0 +1,34 @@
+<div class="col">
+  <div class="card shadow-sm text-center">
+    <div class="card-body">
+      <h5><%= link_to user.name, user, class: 'text-body text-decoration-none' %></h5>
+      <p class="text-secondary mb-1">(<%= user.posts.length %>) posts</p>
+      <p class="text-secondary mb-1">(<%= user.liked_posts.length %>) likes</p>
+    </div>
+    <div class="card-footer" style="line-height: 39px">
+      <% if current_user == user %>
+        That's you!
+      <% end %>
+      <% if current_user.has_friend?(user) %>
+        <span class="text-success">
+          Already friends <i class="bi bi-person-fill-check"></i>
+        </span>
+      <% end %>
+      <% if current_user.sent_friend_request?(user) %>
+        <button class="btn btn-outline-secondary" disabled>
+          Friend requets sent <i class="bi bi-person-fill-add"></i>
+        </button>
+      <% end %>
+      <% if current_user.pending_friend_request_approval?(user) %>
+        <%= render partial: 'users/accept_friend', locals: { user: user } %>
+      <% elsif current_user.can_send_friend_request(user) %>
+        <%= form_with url: add_friend_path(user), method: :put do %>
+          <button type="submit" class="btn btn-outline-primary">
+            Add friend <i class="bi bi-person-fill-add"></i>
+          </button>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>
+

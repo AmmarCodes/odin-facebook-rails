@@ -4,7 +4,7 @@
   <% @notifications.each do |notification| %>
     <li>
       <%= link_to notification.friend.name, user_path(notification.friend) %> sent you a friend request on <%= notification.created_at %>.
-      <%= button_to "Accept", confirm_friend_path(notification.friend), form_class: 'd-inline', class: 'btn btn-link p-0 pb-1', method: :put %>
+      <%= render partial: 'users/accept_friend', locals: { user: notification.user } %>
     </li>
   <% end %>
 </ul>
