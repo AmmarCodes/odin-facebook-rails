@@ -7,12 +7,14 @@ class UsersController < ApplicationController
     @can_send_friend_request = can_send_friend_request(@user)
   end
 
+  def show; end
+
   def friends
     @friends = current_user.friends
   end
 
   def send_friend_request
-    if can_send_friend_request(@user)
+    if current_user.can_send_friend_request(@user)
       current_user.friend_requests << @user
       flash[:notice] = 'Friend request sent!'
       # send notification to @user
@@ -50,15 +52,5 @@ class UsersController < ApplicationController
   def set_user_param
     @user = User.find(params[:id])
     render status:  404 unless @user
-  end
-
-  def can_send_friend_request(user)
-    return false if current_user == user
-
-    return false if current_user.friend_requests.include?(user)
-
-    return false if current_user.friends.include?(user)
-
-    true
   end
 end

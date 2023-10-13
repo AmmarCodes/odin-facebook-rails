@@ -13,4 +13,28 @@ class User < ApplicationRecord
   has_many :posts
   has_many :likes
   has_many :liked_posts, through: :likes, source: :post
+
+  def can_send_friend_request(user)
+    return false if self == user
+
+    return false if friend_requests.include?(user)
+
+    return false if friends.include?(user)
+
+    true
+  end
+
+  def pending_friend_request_approval?(user)
+    user.friend_requests.include?(self)
+  end
+
+  def sent_friend_request?(user)
+    return true if friend_requests.include?(user)
+
+    false
+  end
+
+  def has_friend?(user)
+    friends.include?(user)
+  end
 end
