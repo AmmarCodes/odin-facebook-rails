@@ -1,3 +1,5 @@
+require 'digest'
+
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
@@ -13,6 +15,7 @@ class User < ApplicationRecord
   has_many :posts
   has_many :likes
   has_many :liked_posts, through: :likes, source: :post
+  has_many :comments
 
   def can_send_friend_request(user)
     return false if self == user
@@ -36,5 +39,10 @@ class User < ApplicationRecord
 
   def has_friend?(user)
     friends.include?(user)
+  end
+
+  def gravatar_image
+    hash = Digest::MD5.hexdigest(email.downcase)
+    "https://www.gravatar.com/avatar/#{hash}"
   end
 end

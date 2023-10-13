@@ -8,7 +8,7 @@
     </div>
     <div class="card-text"><%= post.content %></div>
   </div>
-  <footer class="card-footer">
+  <footer class="card-footer border-bottom">
     <span class="btn">
       (<%= post.likers.count %>) likes
     </span>
@@ -23,4 +23,33 @@
       <%= button_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-link', form_class: 'd-inline' %>
     <% end %>
   </footer>
+  <div class="card-body">
+    <h5>Comments</h5>
+    <div class="row gx-5">
+      <% post.comments.each do |comment| %>
+        <div class="col-md-8">
+          <div class="d-flex flex-row p-3">
+            <img src="<%= comment.user.gravatar_image %>" width="40" height="40" class="rounded-circle me-3" />
+            <div class="w-100">
+              <div class="d-flex justify-content-between align-items-center">
+                <span class="mr-2"><%= link_to comment.user.name, comment.user, class: 'text-body text-decoration-none fw-bold' %></span>
+                <small title="<%= comment.created_at %>"><%= time_ago_in_words(comment.created_at) %></small>
+              </div>
+              <p class="text-justify">
+                <%= comment.content %>
+              </p>
+            </div>
+          </div>
+        </div>
+      <% end %>
+      <div class="col">
+        <%= form_with url: post_comments_url(post) do |form| %>
+          <div class="mb-3">
+            <%= form.text_area :content, class: 'form-control', placeholder: 'Type your comment here' %>
+          </div>
+          <button type="submit" class="btn btn-outline-primary">Add</button>
+        <% end %>
+      </div>
+    </div>
+  </div>
 </article>

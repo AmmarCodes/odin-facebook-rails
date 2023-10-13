@@ -13,8 +13,8 @@ Rails app created with `rails new facebook --database=postgresql --css bootstrap
 - [x] The Friend Request shows up in the notifications section of a User’s navbar
 - [x] Users can create Posts
 - [x] Users can Like Posts
-- [ ] Users can Comment on Posts
-- [ ] Posts should always display with the post content, author, comments and likes.
+- [x] Users can Comment on Posts
+- [x] Posts should always display with the post content, author, comments and likes.
 - [ ] Treat the Posts Index page like the real Facebook’s “Timeline” feature – show all the recent posts from the current user and users she is friends with
 - [ ]  Users can create a Profile with their personal information and a photo. You can use Gravatar for this photo.
 - [ ]  The User Show page contains their Profile information, photo, and Posts.

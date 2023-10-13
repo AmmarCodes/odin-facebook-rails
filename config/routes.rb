@@ -13,7 +13,9 @@ Rails.application.routes.draw do
 
   get '/notifications', to: 'notifications#index', as: 'notifications'
 
-  resources :posts
+  resources :posts do
+    resources :comments, only: %i[create update delete]
+  end
   put '/posts/:id/like', to: 'posts#like', as: 'like'
   put '/posts/:id/dislike', to: 'posts#dislike', as: 'dislike'
 end
