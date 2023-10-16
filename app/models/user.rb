@@ -27,6 +27,12 @@ class User < ApplicationRecord
   has_many :liked_posts, through: :likes, source: :post
   has_many :comments
 
+  after_create :send_welcome_email
+
+  def send_welcome_email
+    UserMailer.with(user: self).welcome_email.deliver_later
+  end
+
   def can_send_friend_request(user)
     return false if self == user
 
