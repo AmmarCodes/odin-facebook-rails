@@ -4,8 +4,9 @@ class PostsController < ApplicationController
 
   # GET /posts
   def index
-    # TODO: show posts from current_user and friends
-    @posts = Post.all
+    # show posts from current_user and friends
+    user_ids = current_user.friends.map(&:id).append(current_user.id)
+    @posts = Post.where(user_id: user_ids).order(created_at: :desc)
   end
 
   # GET /posts/1
