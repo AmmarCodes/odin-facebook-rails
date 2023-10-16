@@ -7,7 +7,9 @@ class UsersController < ApplicationController
     @users = User.all
   end
 
-  def show; end
+  def show
+    @user.posts.load
+  end
 
   def profile
     @user = current_user
