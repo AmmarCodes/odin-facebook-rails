@@ -1,6 +1,6 @@
 <h2>Edit your information</h2>
 <div class="row">
-  <div class="col-md-6 offset-md-3">
+  <div class="col-md-6">
     <%= form_with(model: @user, scope: :user) do |form| %>
       <% if @user.errors.any? %>
         <div id="error_explanation" class="alert alert-warning">
@@ -34,7 +34,7 @@
         <%= form.text_area :bio, class: 'form-control' %>
       </div>
 
-      <%= form.submit nil, class: 'btn btn-primary' %>
+      <%= form.submit "Update", class: 'btn btn-primary' %>
     <% end %>
   </div>
 </div>

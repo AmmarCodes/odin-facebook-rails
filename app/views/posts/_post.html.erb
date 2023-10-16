@@ -25,9 +25,9 @@
   </footer>
   <div class="card-body">
     <h5>Comments</h5>
-    <div class="row gx-5">
+    <div class="row">
       <% post.comments.each do |comment| %>
-        <div class="col-md-8 offset-md-1">
+        <div class="col-md-8">
           <div class="d-flex flex-row p-3">
             <img src="<%= comment.user.gravatar_image %>" width="40" height="40" class="rounded-circle me-3" />
             <div class="w-100">
@@ -42,7 +42,7 @@
           </div>
         </div>
       <% end %>
-      <div class="col-md-8 offset-md-1">
+      <div class="col-md-8">
         <%= form_with url: post_comments_url(post) do |form| %>
           <div class="row">
             <div class="col-md-8 offset-md-1">
