@@ -7,7 +7,7 @@
     <div class="col-4 text-end">
       <% if current_user.can_send_friend_request(@user) %>
         <%= button_to "Send friend request", add_friend_path, class: 'btn btn-primary', method: :put %>
-    <% end %>
+      <% end %>
     </div>
 </div>
 
