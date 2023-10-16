@@ -9,6 +9,20 @@ class UsersController < ApplicationController
 
   def show; end
 
+  def profile
+    @user = current_user
+    render 'users/edit'
+  end
+
+  def update
+    @user = current_user
+    if @user.update(params.require(:user).permit(:name, :email, :bio))
+      redirect_to profile_url, notice: 'Your personmal information was successfully updated.'
+    else
+      render 'users/edit', status: :unprocessable_entity
+    end
+  end
+
   def friends
     @friends = current_user.friends
   end

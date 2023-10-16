@@ -1,5 +1,14 @@
 require 'digest'
 
+# Copied from https://guides.rubyonrails.org/active_record_validations.html#custom-validators
+class EmailValidator < ActiveModel::EachValidator
+  def validate_each(record, attribute, value)
+    unless URI::MailTo::EMAIL_REGEXP.match?(value)
+      record.errors.add attribute, (options[:message] || "is not an email")
+    end
+  end
+end
+
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
@@ -7,6 +16,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   validates :name, presence: true
+  validates :email, presence: true, uniqueness: true, on: :create, email: true
 
   has_many :friendships
   has_many :friends, -> { where(friendships: { confirmed: true }) }, through: :friendships
@@ -46,3 +56,4 @@ class User < ApplicationRecord
     "https://www.gravatar.com/avatar/#{hash}"
   end
 end
+
