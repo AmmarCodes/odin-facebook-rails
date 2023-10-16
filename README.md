@@ -4,6 +4,17 @@ Final project for [The Odin Project](https://www.theodinproject.com/lessons/ruby
 
 Rails app created with `rails new facebook --database=postgresql --css bootstrap`
 
+## Screenshots (didn't deploy)
+
+| Image  | Description |
+|--|--|
+| ![](./screenshots/1.png) | Home page feed, showing latest posts from current user and their friends |
+| ![](./screenshots/2.png) | Edit profile information page |
+| ![](./screenshots/3.png) | Profile page showing profile information and the user's posts |
+| ![](./screenshots/4.png) | Friends page |
+| ![](./screenshots/5.png) | Login page |
+| ![](./screenshots/6.png) | Sign up page |
+
 ## Requirements
 
 - [x] Users must be signed in to see anything (but sign-in page)
