@@ -10,6 +10,14 @@
 
 require 'faker'
 
-5.times do
-  User.create(Faker::Internet.user('name', 'email', 'password'))
+user_ids = []
+2.times do
+  user = User.create(Faker::Internet.user('username', 'email', 'password'))
+  user_ids << user.id
+  3.times do
+    post = user.posts.create(title: Faker::Quote.robin, content: Faker::Hipster.paragraph(sentence_count: 6))
+    2.times do
+      post.comments.create(user_id: user_ids.sample, content: Faker::Hipster.paragraph(sentence_count: 1))
+    end
+  end
 end
