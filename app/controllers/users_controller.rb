@@ -1,14 +1,14 @@
 # frozen_string_literal: true
 
 class UsersController < ApplicationController
-  before_action :set_user_param, only: %I[show send_friend_request approve_friend_request confirm_friend_request]
+  before_action :set_user_param, only: %I[send_friend_request approve_friend_request confirm_friend_request]
 
   def index
-    @users = User.all
+    @users = User.includes(:posts, :friends, :friend_requests, :liked_posts, friendships: %i[user friend]).all
   end
 
   def show
-    @user.posts.load
+    @user = User.includes(posts: [:author, :likes, :likers, { comments: [:user] }]).find(params[:id])
   end
 
   def profile
@@ -26,7 +26,8 @@ class UsersController < ApplicationController
   end
 
   def friends
-    @friends = current_user.friends
+    @friends = User.includes(:friend_requests, friends: %I[posts liked_posts friends])
+                   .find(current_user.id).friends
   end
 
   def send_friend_request
@@ -67,6 +68,6 @@ class UsersController < ApplicationController
 
   def set_user_param
     @user = User.find(params[:id])
-    render status:  404 unless @user
+    render status: 404 unless @user
   end
 end

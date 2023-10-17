@@ -6,7 +6,7 @@ class PostsController < ApplicationController
   def index
     # show posts from current_user and friends
     user_ids = current_user.friends.map(&:id).append(current_user.id)
-    @posts = Post.where(user_id: user_ids).order(created_at: :desc)
+    @posts = Post.includes(:author, :likes, :likers, comments: [:user]).where(user_id: user_ids).order(created_at: :desc)
   end
 
   # GET /posts/1
@@ -61,7 +61,7 @@ class PostsController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_post
-    @post = Post.find(params[:id])
+    @post = Post.includes(:author, :likes, :likers, comments: [:user]).find(params[:id])
   end
 
   def set_post_author

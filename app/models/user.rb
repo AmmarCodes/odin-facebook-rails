@@ -36,9 +36,9 @@ class User < ApplicationRecord
   def can_send_friend_request(user)
     return false if self == user
 
-    return false if friend_requests.include?(user)
+    return false if sent_friend_request?(user)
 
-    return false if friends.include?(user)
+    return false if has_friend?(user)
 
     true
   end
@@ -62,4 +62,3 @@ class User < ApplicationRecord
     "https://www.gravatar.com/avatar/#{hash}"
   end
 end
-

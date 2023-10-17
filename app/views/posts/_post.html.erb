@@ -10,7 +10,7 @@
   </div>
   <footer class="card-footer border-bottom">
     <span class="btn">
-      (<%= post.likers.count %>) likes
+      (<%= post.likers.length %>) likes
     </span>
 
     <% if post.likers.include?(current_user) %>

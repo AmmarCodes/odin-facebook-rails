@@ -9,17 +9,17 @@
       <% if current_user == user %>
         That's you!
       <% end %>
-      <% if current_user.has_friend?(user) %>
+      <% if user.has_friend?(current_user) %>
         <span class="text-success">
           Already friends <i class="bi bi-person-fill-check"></i>
         </span>
       <% end %>
-      <% if current_user.sent_friend_request?(user) %>
+      <% if user.pending_friend_request_approval?(current_user) %>
         <button class="btn btn-outline-secondary" disabled>
           Friend requets sent <i class="bi bi-person-fill-add"></i>
         </button>
       <% end %>
-      <% if current_user.pending_friend_request_approval?(user) %>
+      <% if user.sent_friend_request?(current_user) %>
         <%= render partial: 'users/accept_friend', locals: { user: user } %>
       <% elsif current_user.can_send_friend_request(user) %>
         <%= form_with url: add_friend_path(user), method: :put do %>
